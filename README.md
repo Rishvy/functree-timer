@@ -1,4 +1,4 @@
-# Timeitt
+# Functree-Timer
 
 A Python decorator for timing function calls and logging them in a hierarchical tree structure. Perfect for profiling and performance analysis of your Python applications.
 
@@ -13,20 +13,20 @@ A Python decorator for timing function calls and logging them in a hierarchical 
 ## Installation
 
 ```bash
-pip install timeitt
+pip install functree-timer
 ```
 
 ## Quick Start
 
 ```python
-from timeitt import timeit
+from functree_timer import timeit
 
-@timeit(path="function_times.log", minimum_duration=0.05)
+@timeit(minimum_duration=0.05)  # Uses shared default log file
 def my_function():
     # Your code here
     pass
 
-@timeit()
+@timeit()  # Uses shared default log file
 async def my_async_function():
     # Your async code here
     pass
@@ -37,9 +37,9 @@ async def my_async_function():
 ### Basic Usage
 
 ```python
-from timeitt import timeit
+from functree_timer import timeit
 
-@timeit()
+@timeit()  # Uses shared default log file
 def calculate_sum(n):
     total = 0
     for i in range(n):
@@ -97,7 +97,7 @@ async def fetch_data():
 
 ## Parameters
 
-- `path` (str, default: "function_times.log"): Path to the log file where timing information will be written
+- `path` (str, optional): Path to the log file where timing information will be written. If None, uses the shared default log file at root. Defaults to None (shared log file).
 - `minimum_duration` (float, default: 0.05): Minimum duration in seconds for a function call to be logged
 - `top_k` (int or "full", default: "full"): Number of top functions to log, or "full" to log all functions
 - `top_level_functions` (list, optional): List of top-level function names to track (currently not implemented)
